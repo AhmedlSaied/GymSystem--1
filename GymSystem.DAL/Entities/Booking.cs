@@ -10,7 +10,7 @@ namespace GymSystem.DAL.Entities
     {
 
         public Member Member { get; set; } = null!;
-        public int MemberID{ get; set; }
+        public int MemberId { get; set; }
         public Session Session { get; set; } = null!;
         public int SessionID { get; set; }
 

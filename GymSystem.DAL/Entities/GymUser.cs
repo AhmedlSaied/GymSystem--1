@@ -30,10 +30,10 @@ namespace GymSystem.DAL.Entities
     }
     [Owned]
     public class Address
-    { 
-    public int buldingNumber { get; set; }
+    {
+        public int BuildingNumber { get; set; }
         [Required, MaxLength(30)]
-        public string city { get; set; } = null!;
+        public string City { get; set; } = null!;
 
         [Required, MaxLength(30)]
         public string Street { get; set; } = null!;

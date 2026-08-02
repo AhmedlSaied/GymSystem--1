@@ -12,6 +12,8 @@ namespace GymSystem.DAL.Entities
 
         public HealthRecord HealthRecord { get; set; } = null!;
 
-        public ICollection<MemberShip>memberShips=new HashSet<MemberShip>();
+        public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
+
+        public ICollection<MemberShip> Memberships { get; set; }= new HashSet<MemberShip>();
     }
 }

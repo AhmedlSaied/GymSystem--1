@@ -10,18 +10,18 @@ namespace GymSystem.DAL.Entities
     public class HealthRecord:BaseEntities
 
     {
-        public decimal height { get; set; }
-        public decimal weight { get; set; }
+        public decimal Height { get; set; }
+        public decimal Weight { get; set; }
 
         [Required,MaxLength(5)]
-        public decimal bloodtype { get; set; }
+        public decimal BloodType { get; set; }
 
         [MaxLength(500)]
-        public string? notes { get; set; }
+        public string? Note { get; set; }
 
         public Member Member  { get; set; } = null!;
 
-        public int memberid { get; set; }
+        public int MemberId { get; set; }
 
 
     }

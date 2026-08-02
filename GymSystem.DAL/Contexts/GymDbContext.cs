@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using GymSystem.DAL.Configuration;
@@ -11,13 +12,19 @@ namespace GymSystem.DAL.Contexts
 {
     public class GymDbContext:DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=KAYN;Database=GymSystem1;trusted_connection
+        //    =true;TrustServerCertificate=True");
+        //}
+
+        public GymDbContext(DbContextOptions<GymDbContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=KAYN;Database=GymSystem1;trusted_connection=true;TrustServerCertificate=True");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration<Plan>(new PlanConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         }
         public DbSet<Plan> Plans { get; set; }

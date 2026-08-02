@@ -1,0 +1,27 @@
+﻿using GymSystem.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace GymSystem.DAL.Configuration
+{
+    public class MembershipConfigurations : IEntityTypeConfiguration<MemberShip>
+    {
+        public void Configure(EntityTypeBuilder<MemberShip> builder)
+        {
+            builder.HasKey(m => m.Id);
+            builder.Property(X => X.CreatedAt)
+                   .HasColumnName("StartDate")
+                   .HasDefaultValueSql("GETDATE()");
+
+            builder.HasOne(m => m.plan)
+                          .WithMany(p => p.memberShips)
+                          .HasForeignKey(m => m.planId)
+                          .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(m => m.Member)
+                   .WithMany(me => me.Memberships)
+                   .HasForeignKey(m => m.MemberId)
+                   .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
+}
