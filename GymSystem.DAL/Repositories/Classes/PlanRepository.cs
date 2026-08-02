@@ -12,11 +12,11 @@ namespace GymSystem.DAL.Repositories.Classes
 {
     public class PlanRepository : IPlanRepository
     {
-        private GymDbContext dbContext;
+        private readonly GymDbContext dbContext;
 
-        public PlanRepository()
+        public PlanRepository(GymDbContext _dbContext)
         {
-            dbContext = new GymDbContext();
+            dbContext = _dbContext;
         }
 
         public void Add(Plan plan)
@@ -38,15 +38,15 @@ namespace GymSystem.DAL.Repositories.Classes
             }
         }
 
-        public async Task<IEnumerable<Plan>> GetAll()
+        public async Task<IEnumerable<Plan?>> GetAll(bool isTracked, CancellationToken ct = default)
         {
-           return await dbContext.Plans.ToListAsync();
+           return await dbContext.Plans.ToListAsync(ct);
         }
 
-        public async Task<Plan?> GetById(int id)
+        public async Task<Plan?> GetById(int id, CancellationToken ct = default)
         {
-            return await dbContext.Plans.FirstOrDefaultAsync(p => p.Id == id);
-         }
+            return await dbContext.Plans.FirstOrDefaultAsync(p => p.Id == id, ct);
+        }
 
         public void Update(Plan plan)
         {

@@ -11,13 +11,13 @@ namespace GymSystem__1.Controllers
     {
 
         private readonly IPlanRepository planRepository;
-        public PlanController()
+        public PlanController(IPlanRepository _planRepository)
         {
-            planRepository = new PlanRepository();
+            planRepository = _planRepository;
         }
         public async Task <IActionResult> Index()
         {
-            var plans =await planRepository.GetAll();
+            var plans =await planRepository.GetAll(false);
             return View(plans);
         }
 

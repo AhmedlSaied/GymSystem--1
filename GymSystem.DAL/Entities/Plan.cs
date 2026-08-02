@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace GymSystem.DAL.Entities
 {
-    public class Plan
+    public class Plan:BaseEntities
     {
-        public int Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public int Duration { get; set; }
