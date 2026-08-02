@@ -1,10 +1,15 @@
-﻿using GymSystem__1.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GymSystem.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GymSystem__1.Configuration
+namespace GymSystem.DAL.Configuration
 {
-    public class PlanConfigurations : IEntityTypeConfiguration<Plan>
+    public class PlanConfiguration : IEntityTypeConfiguration<Plan>
     {
         public void Configure(EntityTypeBuilder<Plan> builder)
         {
@@ -26,9 +31,6 @@ namespace GymSystem__1.Configuration
                 tb.HasCheckConstraint("DurationCheckValue", "Duration Between 1 and 365");
 
             });
-
         }
-
     }
 }
-
