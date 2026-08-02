@@ -13,5 +13,7 @@ namespace GymSystem.DAL.Entities
         public int Duration { get; set; }
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
+        public ICollection<MemberShip> memberShips = new HashSet<MemberShip>();
+
     }
 }
