@@ -39,8 +39,10 @@ namespace GymSystem.DAL.Repositories.Classes
         }
 
         public async Task<IEnumerable<Plan?>> GetAll(bool isTracked, CancellationToken ct = default)
+
         {
-           return await dbContext.Plans.ToListAsync(ct);
+            var plans = isTracked ? dbContext.Plans.AsTracking() : dbContext.Plans.AsNoTracking();
+            return await plans.ToListAsync();
         }
 
         public async Task<Plan?> GetById(int id, CancellationToken ct = default)
