@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 
 namespace GymSystem.DAL.Entities
 {
+
     public class HealthRecord:BaseEntities
 
     {
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
 
-        [Required,MaxLength(5)]
-        public decimal BloodType { get; set; }
+        [Required, MaxLength(5)]
+        public string BloodType { get; set; } = null!;
 
         [MaxLength(500)]
         public string? Note { get; set; }
 
         public Member Member  { get; set; } = null!;
 
-        public int MemberId { get; set; }
+        public int  MemberId { get; set; }
 
 
     }

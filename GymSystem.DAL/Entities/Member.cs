@@ -9,7 +9,7 @@ namespace GymSystem.DAL.Entities
     public class Member:GymUser
     {
         public string photo {get; set; } = null!;
-
+        public string Photo { get; set; }
         public HealthRecord HealthRecord { get; set; } = null!;
 
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();

@@ -2,14 +2,20 @@ using GymSystem.DAL.Repositories.Interfaces;
 using GymSystem.DAL.Repositories.Classes;
 using GymSystem.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
+using GymSystem.BLL.Services.Classes;
+using GymSystem.BLL.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GymDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
-builder.Services.AddScoped<IPlanRepository,PlanRepository> ();
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+ });
+//builder.Services.AddScoped<IPlanRepository,PlanRepository> ();
+//builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IMemberServices, MemberServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

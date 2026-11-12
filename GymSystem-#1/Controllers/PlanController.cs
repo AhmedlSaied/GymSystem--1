@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GymSystem.DAL.Repositories.Classes;
+using GymSystem.DAL.Entities;
 
 namespace GymSystem__1.Controllers
 {
     public class PlanController : Controller
     {
 
-        private readonly IPlanRepository planRepository;
-        public PlanController(IPlanRepository _planRepository)
+        private readonly IGenericRepository <Plan>planRepository;
+        public PlanController(IGenericRepository<Plan> _planRepository)
         {
             planRepository = _planRepository;
         }

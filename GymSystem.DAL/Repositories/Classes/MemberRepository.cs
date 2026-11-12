@@ -11,47 +11,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace GymSystem.DAL.Repositories.Classes
 {
-    public class MemberRepository : IMemberRepository
+    public class MemberRepository : GenericRepository<Member>, IMemberRepository
     {
         private readonly GymDbContext dbContext;
-        public MemberRepository(GymDbContext dbContext) 
+        public MemberRepository(GymDbContext dbContext): base(dbContext)
         {
                   this.dbContext = dbContext;
         }
-        public void Add(Member member)
-        {
-            dbContext.Members.Add(member);
-        }
-
-        public async Task<int> CompleteAsync()
-        {
-            return await dbContext.SaveChangesAsync();
-        }
-
-        public void Delete(int id)
-        {
-            var member = dbContext.Members.FirstOrDefault(m => m.Id == id);
-            if (member != null)
-            {
-                dbContext.Members.Remove(member);
-            }
-        }
-
-        public async Task<IEnumerable<Member?>> GetAll(bool istracked, CancellationToken ct = default)
-        {
-            var members  = istracked ? dbContext.Members.AsTracking() : dbContext.Members.AsNoTracking();
-            return await members.ToListAsync();
-        }
-
-        public async Task<Member?> GetById(int id, CancellationToken ct = default)
-        {
-            var member= await dbContext.Members.FirstOrDefaultAsync(m => m.Id == id);
-            return member;
-        }
-
-        public void Update(Member member)
-        {
-            dbContext.Members.Update(member);
-        }
+        // Implement any additional methods specific to MemberRepository here
     }
 }
